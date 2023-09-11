@@ -40,6 +40,15 @@ def synchronize_folders(source_folder, replica_folder):
                 log_message(f"Deleting {replica_file}")
                 os.remove(replica_file)
 
+        for dir in dirs:
+            source_dir = os.path.join(source_root, dir)
+            replica_dir = os.path.join(root, dir)
+
+            # Check if the directory exists in the source folder
+            if not os.path.exists(source_dir):
+                log_message(f"Deleting directory {replica_dir}")
+                shutil.rmtree(replica_dir)
+
     # Walk through the source folder and compare with the replica folder
     for root, dirs, files in os.walk(source_folder):
         relative_path = os.path.relpath(root, source_folder)
