@@ -56,6 +56,7 @@ def synchronize_folders(source_folder, replica_folder):
 
         # Create missing directories in the replica folder
         if not os.path.exists(replica_root):
+            log_message(f"making dir: {replica_root}")
             os.makedirs(replica_root)
 
         for file in files:
